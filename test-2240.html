@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Test Countdown 22:40</title>
+<style>
+  body {
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+    margin-top: 120px;
+  }
+  #countdown {
+    font-size: 50px;
+    font-weight: bold;
+  }
+  #video {
+    display: none;
+  }
+</style>
+</head>
+
+<body>
+
+<div id="countdown">Đang tải...</div>
+
+<div id="video">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/Tfqziirjyas?autoplay=1"
+    allow="autoplay; encrypted-media"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<script>
+const target = new Date();
+target.setHours(22, 40, 0, 0); // 22:40:00
+
+function update() {
+  const now = new Date();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    document.getElementById("countdown").style.display = "none";
+    document.getElementById("video").style.display = "block";
+    return;
+  }
+
+  const mins = Math.floor(diff / 60000);
+  const secs = Math.floor((diff % 60000) / 1000);
+
+  document.getElementById("countdown").innerHTML =
+    `⏳ Còn ${mins} phút ${secs} giây`;
+}
+
+setInterval(update, 1000);
+</script>
+
+</body>
+</html>
