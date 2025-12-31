@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="UTF-8">
+<title>Countdown Video</title>
+<style>
+  body {
+    background: black;
+    color: white;
+    text-align: center;
+    font-family: Arial;
+    margin-top: 120px;
+  }
+  #countdown {
+    font-size: 50px;
+    font-weight: bold;
+  }
+  #video {
+    display: none;
+  }
+</style>
+</head>
+<body>
+
+<div id="countdown"></div>
+
+<div id="video">
+  <iframe width="560" height="315"
+    src="https://www.youtube.com/embed/Tfqziirjyas?autoplay=1"
+    allow="autoplay; encrypted-media"
+    frameborder="0"
+    allowfullscreen>
+  </iframe>
+</div>
+
+<script>
+const target = new Date();
+target.setHours(23,59,50,0);
+
+function update() {
+  const now = new Date();
+  const diff = target - now;
+
+  if (diff <= 0) {
+    document.getElementById("countdown").style.display = "none";
+    document.getElementById("video").style.display = "block";
+    return;
+  }
+
+  const s = Math.floor(diff / 1000);
+  document.getElementById("countdown").innerHTML =
+    "⏳ Còn lại: " + s + " giây";
+}
+
+setInterval(update, 1000);
+</script>
+
+</body>
+</html>
